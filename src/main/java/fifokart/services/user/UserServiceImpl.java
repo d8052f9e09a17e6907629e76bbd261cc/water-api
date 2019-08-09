@@ -54,4 +54,20 @@ public class UserServiceImpl implements UserService {
         }
         return loginResponse;
     }
+
+    @Override
+    public RegistrationResponse updateUser(User user, Long id) throws DuplicateRegistration{
+        if(userRepository.countByPhoneOrEmailId(user.getPhone(), user.getEmailId()) > 0){
+            throw new DuplicateRegistration("Phone number already registered");
+        }
+        User getUser = userRepository.findById(id).get();
+        getUser.setEmailId(user.getEmailId());
+        getUser.setName(user.getName());
+        getUser.setPassword(user.getPassword());
+        User userRes = userRepository.save(getUser);
+        RegistrationResponse res = new RegistrationResponse();
+        res.setMessage("User profile updated successfully");
+        res.setContext(userRes);
+        return res;
+    }
 }

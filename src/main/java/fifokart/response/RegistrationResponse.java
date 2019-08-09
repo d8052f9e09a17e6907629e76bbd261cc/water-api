@@ -27,4 +27,11 @@ public class RegistrationResponse {
         return message;
     }
 
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 }

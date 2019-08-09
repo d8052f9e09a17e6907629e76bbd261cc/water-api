@@ -18,5 +18,7 @@ public interface UserService {
 
     LoginResponse login(UserLogin user);
 
+    RegistrationResponse updateUser(User user, Long id) throws DuplicateRegistration;
+
 //    void delete(Long userId);
 }
